@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.Flex-div {
+  display:flex;
+  align-items: center;
+  justify-content:space-between
+}
+
+.Start {
+  color : rgb(235, 235, 78)
+}
