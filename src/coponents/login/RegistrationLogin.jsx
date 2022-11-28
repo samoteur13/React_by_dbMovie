@@ -1,11 +1,20 @@
 import React from 'react';
-import Input from '../tools/Input';
+import DivForm from '../tools/DivForm';
 import axios from 'axios';
 import {useState , useContext ,useEffect} from 'react';
-import Button from '../tools/Button';
 import {useError} from '../../utils/useError';
 import {MyContext} from '../../store/AppContext';
 import { useNavigate } from "react-router-dom";
+
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
 
 const RegistrationLogin = () => {
@@ -14,7 +23,7 @@ const RegistrationLogin = () => {
     const navigate = useNavigate()
     const {store, setStore} = useContext(MyContext);
 
-    const [ifLogin, setIfLogin] = useState (false)
+    const [ifLogin, setIfLogin] = useState (true)
     const {myError, saveError} = useError()
 
     //------------------ Inscription ----------------------
@@ -63,7 +72,7 @@ const RegistrationLogin = () => {
             .then(res =>  setStore({...store , user: res.data }))
             .catch(err => console.log('err => ', err))
 
-            navigate('/profile')
+            navigate('/liste-de-filme')
         }
     },[store.isUserAuth])
 
@@ -84,91 +93,142 @@ const RegistrationLogin = () => {
       }
 
     return (
-        <div>
-            <div className="Flex-div" style={{border: '', borderRadius:'5px', width: '30%',margin: 'auto' }}>
-                <Button
-                    label='Inscription'
-                    action={ () => {setIfLogin(false)}}
-                />
-                <Button
-                    label='Connexion'
-                    action={ () => {setIfLogin(true)}}
-                />
-            </div>
+        <Container component="main" maxWidth="xs">
+             <CssBaseline />
             {ifLogin ? 
-                <form style={{border: '', borderRadius:'5px', width: '30%',margin: 'auto' }} onSubmit={handleSubmit}>
-                    <h3>Connexion</h3>
-                    {myError.length > 1
-                        && <p className='text-danger'>{myError}</p>
-                     }
-                    <Input 
-                        name='email' 
-                        label='Email' 
-                        type='text' 
-                        val={login.email}
-                        onChange={handleUser}
-                    />
-                    <Input 
-                        name='password' 
-                        label='Mot de passe' 
-                        type='text' 
-                        val={login.password} 
-                        onChange={handleUser}
-                    />
-                    <input style={{margin: '5px', fontweight: 'bold'}}  type='submit' value='connexion'/>
-                </form>    
+                <Box
+                    sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Connexion
+                        <p className="text-danger">{myError}</p>
+                        {myError.length > 1
+                            && <p className='text-danger'>{myError}</p>
+                            }
+                    </Typography>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
+                        <DivForm 
+                            name='email' 
+                            label='Email' 
+                            type='text' 
+                            val={login.email}
+                            onChange={handleUser}
+                        />
+                        <DivForm 
+                            name='password' 
+                            label='Mot de passe' 
+                            type='text' 
+                            val={login.password} 
+                            onChange={handleUser}
+                        />
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="Remember me"
+                        />
+                       <Button
+                        type="Ajouter"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                        >
+                            Connexion
+                        </Button>
+                        <Grid container>
+                            <Grid item xs>
+                                <Button size="small"
+                                    onClick={ () => { setIfLogin(false)}}
+                                    >Vous n'êtes pas inscrit  ? <u>inscrivez vous</u></Button>
+                            </Grid>
+                        </Grid>
+                    </Box>    
+                </Box>
             :
-                <form style={{border: '', borderRadius:'5px', width: '30%',margin: 'auto' }} onSubmit={handleSubmit}>
-                <h3>Inscription</h3>
-                    {myError.length > 1
-                        && <p className='text-danger'>{myError}</p>
-                     }
-                <Input 
-                    name='email' 
-                    label='Email' 
-                    type='email' 
-                    val={register.email}
-                    onChange={handleUser}
-                />
-                <Input 
-                    name='password' 
-                    label='Mot de passe' 
-                    type='password' 
-                    val={register.password} 
-                    onChange={handleUser}
-                />
-                <Input 
-                    name='firstname' 
-                    label='Prénom' 
-                    type='text' 
-                    val={register.firstname} 
-                    onChange={handleUser}
-                />
-                <Input 
-                    name='lastname' 
-                    label='Nom' 
-                    type='text' 
-                    val={register.lastname} 
-                    onChange={handleUser}
-                />
-                <Input 
-                    name='city' 
-                    label='Ville' 
-                    type='text' 
-                    val={register.city} 
-                    onChange={handleUser}
-                />
-                <Input 
-                    name='postalcode' 
-                    label='code postale' 
-                    type='text' 
-                    val={register.postalCode} 
-                    onChange={handleUser}
-                />
-                <input style={{margin: '5px', fontweight: 'bold'}}  type='submit' value='Inscription'/>
-                </form>
+                <Box
+                    sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    }}
+                >   
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Inscription
+                        <p className="text-danger">{myError}</p>
+                        {myError.length > 1
+                            && <p className='text-danger'>{myError}</p>
+                            }
+                    </Typography>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                        <DivForm 
+                            name='email' 
+                            label='Email' 
+                            type='email' 
+                            val={register.email}
+                            onChange={handleUser}
+                        />
+                        <DivForm 
+                            name='password' 
+                            label='Mot de passe' 
+                            type='password' 
+                            val={register.password} 
+                            onChange={handleUser}
+                        />
+                        <DivForm 
+                            name='firstname' 
+                            label='Prénom' 
+                            type='text' 
+                            val={register.firstname} 
+                            onChange={handleUser}
+                        />
+                        <DivForm 
+                            name='lastname' 
+                            label='Nom' 
+                            type='text' 
+                            val={register.lastname} 
+                            onChange={handleUser}
+                        />
+                        <DivForm 
+                            name='city' 
+                            label='Ville' 
+                            type='text' 
+                            val={register.city} 
+                            onChange={handleUser}
+                        />
+                        <DivForm 
+                            name='postalcode' 
+                            label='code postale' 
+                            type='text' 
+                            val={register.postalCode} 
+                            onChange={handleUser}
+                        />
+                        <Button
+                        type="Ajouter"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                        >
+                        Inscription
+                        </Button>
+                        <Grid container>
+                            <Grid item xs>
+                                <Button size="small"
+                                    onClick={ () => {setIfLogin(true)}}
+                                >Vous êtes déjà inscrit ? <u>connectez vous</u></Button>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
             }
-        </div>
+        </Container>
     )
 }
 

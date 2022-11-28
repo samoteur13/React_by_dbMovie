@@ -3,21 +3,23 @@ import Cards from '../tools/Card'
 import axios from 'axios';
 import {useState, useEffect , useContext } from 'react';
 import Loading from '../tools/Loading'
-import Input from '../tools/Input'
+import DivForm from '../tools/DivForm'
 import { MyContext } from '../../store/AppContext';
 import {useGenres} from '../../utils/useGenres'
+import Filter from '../tools/Filter'
 
 import Pagination from '@mui/material/Pagination';
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container';
 
+import Fade from '@mui/material/Fade';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 
 
 
-const MovieListe = () => {
-
-    
+const MovieListe = () => { 
 
     const {store, setStore} = useContext(MyContext);
     useEffect( () =>{
@@ -57,10 +59,11 @@ const MovieListe = () => {
                 ? `${ paramsUrl.url}${paramsUrl.keyStartDate}${paramsUrl.startDate}${paramsUrl.keyEndDate}${paramsUrl.endDate}${paramsUrl.token}${paramsUrl.lang}${paramsUrl.keyPage}${paramsUrl.page}&with_genres=${paramsUrl.categories.toString()}`
                 : `${ paramsUrl.urlSearch}${paramsUrl.tokenSearch}${paramsUrl.lang}${paramsUrl.keySearch}${paramsUrl.search}${paramsUrl.keyPage}${paramsUrl.page}${paramsUrl.adult}&with_genres=${paramsUrl.categories.toString()}`  
 
-
     const img_url = 'https://image.tmdb.org/t/p/original'
 
     const [movieList, setMovieList] = useState([]);
+    const [checked, setChecked] = React.useState(false);
+    const [formats, setFormats] = React.useState(() => []);
 
     const getListe = () => {
         //ques que any
@@ -68,13 +71,23 @@ const MovieListe = () => {
         .get(urlListMovie)
         .then(res => {setMovieList(res.data)})
         .catch(err => console.log('err => ', err))
-
     }
+
+    const handleFormat = (event, newFormats) => {
+        console.log(newFormats)
+        setParamsUrl({...paramsUrl, categories : newFormats})
+        setFormats(newFormats);
+      };
+
+    const handleChange = () => {
+        setChecked((prev) => !prev);
+    };
+
 
     const handleParams = (e) => {
         const key = e.target.name;
         const value = e.target.value;
-      
+
         if(key == 'startDate' && value > paramsUrl.endDate){
             alert('La date de début ne peux être supérieure a la date de fin')
         }else if (key == 'endDate' && value < paramsUrl.startDate){
@@ -88,24 +101,6 @@ const MovieListe = () => {
             setSearchMovie(true)
             setParamsUrl({...paramsUrl, [`${key}`] :  value}); 
         }
-
-        if(e.target.type == 'checkbox'){
-           if(e.target.checked){
-            let cloneCateg  = [...paramsUrl.categories]
-            cloneCateg.push(value)
-            setParamsUrl({...paramsUrl, categories : cloneCateg})
-           }else{
-            let cloneCateg  = [...paramsUrl.categories]
-
-            for (let index = 0; index < cloneCateg.length; index++) {
-                if(cloneCateg[index] == value){
-                    cloneCateg.splice(index,1)
-                }
-            }
-
-            setParamsUrl({...paramsUrl, categories : cloneCateg})
-           }
-        }
     };
 
     
@@ -117,26 +112,38 @@ const MovieListe = () => {
         if(movieList.results) {
             return(
                 <div className="">
+                    <Fade in={checked}>
+                        <div>
+                        <Filter 
+                            genres={categories.genres}
+                            formats={formats}
+                            onChange={handleFormat}
+                        />
+                        </div>
+                    </Fade>
+                    <FormControlLabel
+                    control={<Switch checked={checked} onChange={handleChange} />}
+                    label="filtre"
+                    />
                     <div className='d-flex justify-content-around'>
-                    <h2>Liste de film par années</h2>
                     <form className='col-6 p-3 '>
                         <h5 className='text-center'>Filtre</h5>
                         <div className='d-flex justify-content-around '>
-                                <Input 
+                                <DivForm 
                                     label='date début'
                                     name='startDate'
                                     type='number' 
                                     val={paramsUrl.startDate}
                                     onChange={handleParams}
                                 />
-                                <Input 
+                                <DivForm 
                                     label='date fin'  
                                     type='number' 
                                     name='endDate'
                                     val={paramsUrl.endDate}
                                     onChange={handleParams}
                                 />
-                                <Input 
+                                <DivForm 
                                     label='Recherche'
                                     name='search'
                                     type='text' 
@@ -144,19 +151,8 @@ const MovieListe = () => {
                                     onChange={handleParams}
                                 />
                         </div>
-                         <h5 className='text-center'>Genres</h5>
-                        <div className="d-flex flex-wrap">
-                        {categories.genres.map((info) => {
-                                    return  (<div className="m-1" key={info.id}>
-                                                <input type="checkbox" className="btn-check" id={info.id} value={info.id} onChange={handleParams}/>
-                                                <label className="btn btn-outline-dark" htmlFor={info.id}>{info.name}</label>
-                                            </div>
-                                        )
-                                    })}
-                        </div>
                     </form>
                     </div>
-
 
                     <div className="album py-5 bg-light">
                         <Grid display="flex" justifyContent="center" alignItems="center">

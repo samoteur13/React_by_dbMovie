@@ -5,12 +5,10 @@ import {useState, useEffect, useContext } from 'react';
 import Loading from '../tools/Loading'
 import { MyContext } from '../../store/AppContext';
 import {useGenres} from '../../utils/useGenres'
-
 import Pagination from '@mui/material/Pagination';
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container';
-
 
 const TVListe = () => {
 

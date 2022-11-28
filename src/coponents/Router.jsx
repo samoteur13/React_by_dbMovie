@@ -4,6 +4,7 @@ import { useContext} from 'react';
 
 import Home from './Home'
 import Header from './template/Header'
+import Footer from './template/Footer'
 import MovieListe from './Liste&Details/MovieListe';
 import MoovieDetails from './Liste&Details/Moovie_tv_Details';
 import SeriesTv from './Liste&Details/SeriesTv'
@@ -52,6 +53,7 @@ const Router = React.FC = () =>{
                         <Route path={MyRoutes.PROFIL} element={<Profil />} />
                     </Route>
                 </Routes>
+                <Footer/>
             </AppContext>
         </BrowserRouter>
     )

@@ -6,7 +6,7 @@ export const MyContext = createContext(null);
 const AppContext = ({children}) => {
 
     const [store, setStore] = useState ({
-        isUserAuth: true,
+        isUserAuth: false,
         user: {
                 avatar : '',
                 biography: '', 

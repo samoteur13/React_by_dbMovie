@@ -1,9 +1,18 @@
-import React from 'react';
-import Input from './tools/Input'
+import * as React from 'react';
+import DivForm from './tools/DivForm'
 import axios from 'axios';
 import {useState} from 'react';
 import Cards from './tools/Card';
 import { useError } from '../utils/useError';
+
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+
 
 
 const AddMovie = () => {
@@ -15,10 +24,10 @@ const AddMovie = () => {
     };
 
     const [addMovie, setAddMovie] = useState({
-        title:'', 
-        overview : '', 
-        release_date: '', 
-        poster_path: ''
+        title:'Ajouter votre titre', 
+        overview : 'Une description de votre filme', 
+        release_date: 'Date de realisation', 
+        poster_path: 'https://i0.wp.com/views.fr/wp-content/uploads/2020/04/8t7cemgym6dx0fa71yj6uo0rno-475.jpg?resize=1200%2C1800&ssl=1'
     })
 
     const handleUser = (e) => {
@@ -30,7 +39,13 @@ const AddMovie = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         postMovie()
+        const data = new FormData(event.currentTarget);
+        console.log({
+          email: data.get('email'),
+          password: data.get('password'),
+        });
     }
+
 
     const postMovie = () => {
         axios
@@ -43,47 +58,84 @@ const AddMovie = () => {
     }
 
     return(
-        <div className="d-flex container">
-            <form style={{border: '', borderRadius:'5px', width: '30%',margin: 'auto' }} onSubmit={handleSubmit}>
-                <h3>Filme à ajouter</h3>
-                <h4 className="text-danger">{myError}</h4>
-                <Input 
-                    name='title' 
-                    label='Titre' 
-                    type='text' 
-                    val={addMovie.title}
-                    onChange={handleUser}
-                />
-                <Input 
-                    name='overview' 
-                    label='Description' 
-                    type='text' 
-                    val={addMovie.overview} 
-                    onChange={handleUser}
-                />
-                <Input 
-                    name='release_date' 
-                    label='Date de réalisation' 
-                    type='date' 
-                    val={addMovie.release_date} 
-                    onChange={handleUser}
-                />
-                <Input 
-                    name='poster_path' 
-                    label="Adress de l'image" 
-                    type='text' 
-                    val={addMovie.poster_path} 
-                    onChange={handleUser}
-                />
-                <input style={{margin: '5px', fontweight: 'bold'}}  type='submit' value='Ajouter'/>
-            </form>
-            <Cards 
-                title={addMovie.title}
-                img={addMovie.poster_path}
-                overview={addMovie.overview}
-                date={addMovie.release_date}
-            />
-        </div>
+        <Container  maxWidth="md">
+        <CssBaseline />
+        <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+                <Box
+                    sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Filme à ajouter
+                        <h4 className="text-danger">{myError}</h4>
+                    </Typography>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
+                        <DivForm 
+                            name='title' 
+                            label='Titre' 
+                            type='text' 
+                            val={addMovie.title}
+                            onChange={handleUser}
+                        />
+                        <DivForm 
+                            name='overview' 
+                            label='Description' 
+                            type='text' 
+                            val={addMovie.overview} 
+                            onChange={handleUser}
+                        />
+                        <DivForm 
+                            name='release_date' 
+                            type='date' 
+                            val={addMovie.release_date} 
+                            onChange={handleUser}
+                        />
+                        <DivForm 
+                            name='poster_path' 
+                            label="Adress de l'image" 
+                            type='text' 
+                            val={addMovie.poster_path} 
+                            onChange={handleUser}
+                        />
+                    <Button
+                        type="Ajouter"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Ajouter
+                    </Button>
+                </Box>
+                </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+            <Box
+                sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                }}
+                >
+                    <Box sx={{ mt: 1 }} >
+                        <Cards 
+                        title={addMovie.title}
+                        img={addMovie.poster_path}
+                        overview={addMovie.overview}
+                        date={addMovie.release_date}
+                        />
+                    </Box>
+                </Box>
+            </Grid>
+        </Grid>
+        </Container>
     )
 }
 

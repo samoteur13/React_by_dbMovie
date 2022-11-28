@@ -1,9 +1,15 @@
 import React from 'react';
-import Input from './tools/Input'
+import DivForm from './tools/DivForm'
 import axios from 'axios';
 import {useState, useEffect, useContext } from 'react';
-import Loading from './tools/Loading';
 import { MyContext } from '../store/AppContext';
+import Grid from '@mui/material/Unstable_Grid2';
+import {Button, Box} from '@mui/material'
+
+import Avatar from '@mui/material/Avatar';
+import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
 const Profil = () => {
 
@@ -41,55 +47,69 @@ const Profil = () => {
     }
 
     return (
-        <div>
-            <form style={{border: '', borderRadius:'5px', width: '30%',margin: 'auto' }} onSubmit={handleSubmit}>
+        <Container component="main" maxWidth="md">
+            <Box 
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                component="form" 
+                onSubmit={handleSubmit} 
+                >
                 <h3>Mon profile</h3>
-                <Input 
+                <DivForm 
                     name='email' 
                     label='Email' 
                     type='email' 
                     val={store.user.email}
                     onChange={handleUser}
                 />
-                <Input 
+                <DivForm 
                     name='firstname' 
                     label='Prénom' 
                     type='text' 
                     val={store.user.firstname} 
                     onChange={handleUser}
                 />
-                <Input 
+                <DivForm 
                     name='lastname' 
                     label='Nom' 
                     type='text' 
                     val={store.user.lastname} 
                     onChange={handleUser}
                 />
-                <Input 
+                <DivForm 
                     name='city' 
                     label='Ville' 
                     type='text' 
                     val={store.user.city} 
                     onChange={handleUser}
                 />
-                <Input 
+                <DivForm 
                     name='postalcode' 
                     label='code postale' 
                     type='text' 
                     val={store.user.postalCode} 
                     onChange={handleUser}
                 />
-                <Input 
+                <DivForm 
                     name='avatar' 
                     label='Avatar' 
                     type='text' 
                     val={store.user.avatar} 
                     onChange={handleUser}
                 />
-
-                <input style={{margin: '5px', fontweight: 'bold'}}  type='submit' value='Modifier'/>
-            </form>
-        </div>
+                <Button
+                type="submit"
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                >
+                Modifier
+                </Button>
+            </Box>
+        </Container>
     )
 }
 
