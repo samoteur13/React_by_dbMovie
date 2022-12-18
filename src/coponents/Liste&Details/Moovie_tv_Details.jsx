@@ -7,9 +7,9 @@ import CardDetailsMovie from './CardDetailsMovieTV'
 import {MyContext} from '../../store/AppContext'
 
 
-const MoovieDetails = (props) => {
+const MoovieDetails = () => {
 
-    const {store,setStore} = useContext(MyContext)
+    const {store} = useContext(MyContext)
 
     const params = useParams()
     
@@ -46,7 +46,6 @@ const MoovieDetails = (props) => {
             if(trailerMovie.length > 0){
                 return (
                 <div>
-                    <button onClick={() => console.log(trailerMovie)}>Test data</button>
                     <CardDetailsMovie 
                         title = {detailsMovie.title}
                         date = {detailsMovie.release_date}

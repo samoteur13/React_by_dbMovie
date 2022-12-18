@@ -25,7 +25,7 @@ const AddMovie = () => {
 
     const [addMovie, setAddMovie] = useState({
         title:'Ajouter votre titre', 
-        overview : 'Une description de votre filme', 
+        overview : 'Une description de votre film', 
         release_date: 'Date de realisation', 
         poster_path: 'https://i0.wp.com/views.fr/wp-content/uploads/2020/04/8t7cemgym6dx0fa71yj6uo0rno-475.jpg?resize=1200%2C1800&ssl=1'
     })
@@ -73,7 +73,7 @@ const AddMovie = () => {
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Filme à ajouter
+                        Film à ajouter
                         <h4 className="text-danger">{myError}</h4>
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >

@@ -37,12 +37,12 @@ const AuthRoutes = () => {
 const Router = React.FC = () =>{
 
     return (
-        <BrowserRouter>
+        <BrowserRouter >
             <AppContext >
                 <Header />
-                <Routes >
+                <Routes  >
                     {/* Routes public */}
-                    <Route path={MyRoutes.HOME} element={<Home/>} />
+                    <Route path={MyRoutes.HOME } element={<Home/>} />
                     <Route path={MyRoutes.LOGIN} element={<RegistrationLogin />} />
                     {/* Routes privée */}
                     <Route element={<AuthRoutes/>}>

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 const Footer = () => {
     return (
-        <footer style={{position: 'relative' ,bottom: '1%', left: '50%', transform: 'translate(-50%, -50%)'}} className="text-muted">
+        <footer className="text-muted">
             <Typography variant="body2" color="text.secondary" align="center" >
                 {'Copyright © '}
                 <Link color="inherit" href="http://samy-chabani.ri7.tech:8080/">

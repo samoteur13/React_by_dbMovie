@@ -7,17 +7,10 @@ import DivForm from '../tools/DivForm'
 import { MyContext } from '../../store/AppContext';
 import {useGenres} from '../../utils/useGenres'
 import Filter from '../tools/Filter'
-
 import Pagination from '@mui/material/Pagination';
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container';
-
-import Fade from '@mui/material/Fade';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-
-
 
 const MovieListe = () => { 
 
@@ -25,8 +18,6 @@ const MovieListe = () => {
     useEffect( () =>{
         setStore({...store, isMovie: 'movie'});
     },[])
-
-    const myError = useGenres('movie')
 
     const [paramsUrl, setParamsUrl] = useState({
         //search movie by date
@@ -41,8 +32,6 @@ const MovieListe = () => {
         page : 1 ,
         keyCategories: '&with_genres=',
         categories: [],
-        
-        // search movie by title
         urlSearch: 'https://api.themoviedb.org/3/search/movie',
         tokenSearch : '?api_key=7d650a677bfe91f70ad7c5de68f0a471',
         keySearch : '&query=',
@@ -54,19 +43,15 @@ const MovieListe = () => {
     const categories =  useGenres('movie')
 
     const [searchMovie , setSearchMovie] = useState(false)
-
     let urlListMovie = searchMovie == false
                 ? `${ paramsUrl.url}${paramsUrl.keyStartDate}${paramsUrl.startDate}${paramsUrl.keyEndDate}${paramsUrl.endDate}${paramsUrl.token}${paramsUrl.lang}${paramsUrl.keyPage}${paramsUrl.page}&with_genres=${paramsUrl.categories.toString()}`
                 : `${ paramsUrl.urlSearch}${paramsUrl.tokenSearch}${paramsUrl.lang}${paramsUrl.keySearch}${paramsUrl.search}${paramsUrl.keyPage}${paramsUrl.page}${paramsUrl.adult}&with_genres=${paramsUrl.categories.toString()}`  
-
     const img_url = 'https://image.tmdb.org/t/p/original'
 
     const [movieList, setMovieList] = useState([]);
-    const [checked, setChecked] = React.useState(false);
     const [formats, setFormats] = React.useState(() => []);
 
     const getListe = () => {
-        //ques que any
         axios
         .get(urlListMovie)
         .then(res => {setMovieList(res.data)})
@@ -74,15 +59,9 @@ const MovieListe = () => {
     }
 
     const handleFormat = (event, newFormats) => {
-        console.log(newFormats)
         setParamsUrl({...paramsUrl, categories : newFormats})
         setFormats(newFormats);
       };
-
-    const handleChange = () => {
-        setChecked((prev) => !prev);
-    };
-
 
     const handleParams = (e) => {
         const key = e.target.name;
@@ -103,7 +82,6 @@ const MovieListe = () => {
         }
     };
 
-    
     useEffect(() => {
         getListe()
     },[paramsUrl.page, paramsUrl.startDate, paramsUrl.endDate,paramsUrl.search, paramsUrl.categories])
@@ -111,49 +89,17 @@ const MovieListe = () => {
     const Load = () => {
         if(movieList.results) {
             return(
-                <div className="">
-                    <Fade in={checked}>
-                        <div>
-                        <Filter 
-                            genres={categories.genres}
-                            formats={formats}
-                            onChange={handleFormat}
-                        />
-                        </div>
-                    </Fade>
-                    <FormControlLabel
-                    control={<Switch checked={checked} onChange={handleChange} />}
-                    label="filtre"
+                <div>
+                    <Filter 
+                        genres={categories.genres}
+                        formats={formats}
+                        onChange={handleFormat}
+                        changeDate={handleParams}
+                        startValue={paramsUrl.startDate}
+                        endValue={paramsUrl.endDate}
+                        changeSearch={handleParams}
+                        searchValue={paramsUrl.titleMovie}
                     />
-                    <div className='d-flex justify-content-around'>
-                    <form className='col-6 p-3 '>
-                        <h5 className='text-center'>Filtre</h5>
-                        <div className='d-flex justify-content-around '>
-                                <DivForm 
-                                    label='date début'
-                                    name='startDate'
-                                    type='number' 
-                                    val={paramsUrl.startDate}
-                                    onChange={handleParams}
-                                />
-                                <DivForm 
-                                    label='date fin'  
-                                    type='number' 
-                                    name='endDate'
-                                    val={paramsUrl.endDate}
-                                    onChange={handleParams}
-                                />
-                                <DivForm 
-                                    label='Recherche'
-                                    name='search'
-                                    type='text' 
-                                    val={paramsUrl.titleMovie}
-                                    onChange={handleParams}
-                                />
-                        </div>
-                    </form>
-                    </div>
-
                     <div className="album py-5 bg-light">
                         <Grid display="flex" justifyContent="center" alignItems="center">
                             <Pagination 
