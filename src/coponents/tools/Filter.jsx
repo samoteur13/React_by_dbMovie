@@ -9,8 +9,9 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import Grid from '@mui/material/Grid';
-// import box from '@mui/material/;'
-
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   '& .MuiToggleButtonGroup-grouped': {
@@ -85,6 +86,7 @@ const Filter = (props) => {
 
           <Paper
               elevation={0}
+              className="scrollbar style-3 "
               sx={{
                   display: 'flex',
                   border: (theme) => `1px solid ${theme.palette.divider}`,
@@ -97,7 +99,7 @@ const Filter = (props) => {
                   onChange={props.onChange}
                   aria-label="text formatting"
                   color='info'
-                  style={{display: 'flex', flexWrap:'inherit', justifyContent: 'center'}}
+                  // style={{display: 'flex', flexWrap:'inherit', justifyContent: 'center'}}
               >
                     {props.genres.map((info) => {
                                       return (
