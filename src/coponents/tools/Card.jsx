@@ -5,11 +5,12 @@ import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import CardHeader from '@mui/material/CardHeader';
-import Typography from '@mui/material/Typography';
-import CardContent from '@mui/material/CardContent';
+// import Typography from '@mui/material/Typography';
+// import CardContent from '@mui/material/CardContent';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import StarIcon from '@mui/icons-material/Star';
 import Grid from '@mui/material/Unstable_Grid2';
+
 
 
 const Cards = (props) => {
@@ -28,13 +29,13 @@ const Cards = (props) => {
                 <CardHeader
                     title={props.title}
                     subheader={props.date}
-                    
+                    style={{fontsize : '1.3rem'}}
                 />
-                    <CardContent>
+                    {/* <CardContent>
                     <Typography variant="body2" color="text.secondary">
                     {props.overview}
                     </Typography>
-                </CardContent>
+                </CardContent> */}
                 {props.id  && 
                     <CardActions className="Flex-div">
                         <Link className="badge badge-pill" to={url}>

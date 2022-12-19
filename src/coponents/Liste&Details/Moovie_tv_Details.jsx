@@ -7,6 +7,7 @@ import CardDetailsMovie from './CardDetailsMovieTV'
 import {MyContext} from '../../store/AppContext'
 
 
+
 const MoovieDetails = () => {
 
     const {store} = useContext(MyContext)

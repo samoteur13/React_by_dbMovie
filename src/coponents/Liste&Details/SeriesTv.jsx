@@ -9,6 +9,7 @@ import Pagination from '@mui/material/Pagination';
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container';
+import Filter from '../tools/Filter'
 
 const TVListe = () => {
 
@@ -21,16 +22,26 @@ const TVListe = () => {
 
     const [paramsUrl, setParamsUrl] = useState({
         url: 'https://api.themoviedb.org/3/discover/tv?',
+        urlSearch : 'https://api.themoviedb.org/3/search/tv?',
         token : '&api_key=7d650a677bfe91f70ad7c5de68f0a471',
         lang : '&language=fr-FR',
         keyPage : '&page=',
+        startDate : '2022',
+        endDate : '2023',
+        search: '',
         page : 1 ,
         categories: []
     })
 
-    const urlListTv  = `${ paramsUrl.url}${paramsUrl.token}${paramsUrl.lang}${paramsUrl.keyPage}${paramsUrl.page}&with_genres=${paramsUrl.categories.toString()}`
+    const [searchMovie , setSearchMovie] = useState(false)
+
+    let urlListTv = searchMovie === false
+    ? `${ paramsUrl.url}${paramsUrl.token}${paramsUrl.lang}${paramsUrl.keyPage}${paramsUrl.page}&with_genres=${paramsUrl.categories.toString()}&first_air_date.gte=${paramsUrl.startDate}&first_air_date.lte=${paramsUrl.endDate}&sort_by=popularity.desc`
+    :  `${ paramsUrl.urlSearch}${paramsUrl.token}${paramsUrl.lang}&query=${paramsUrl.search}${paramsUrl.keyPage}${paramsUrl.page}${paramsUrl.adult}&sort_by=popularity.desc`
+
     const img_url = 'https://image.tmdb.org/t/p/original'
     const [tvListe, settvListe] = useState([]);
+
 
     const getListe = () => {
         //ques que any
@@ -39,51 +50,57 @@ const TVListe = () => {
         .then(res => {settvListe(res.data)})
         .catch(err => console.log('err => ', err))
     }
+    const [formats, setFormats] = React.useState(() => []);
+    const handleFormat = (event, newFormats) => {
+        setParamsUrl({...paramsUrl, categories : newFormats})
+        setFormats(newFormats);
+      };
 
     const handleParams = (e) => {
         const key = e.target.name;
         const value = e.target.value;
 
-        if(e.target.type == 'checkbox'){
-           if(e.target.checked){
-            let cloneCateg  = [...paramsUrl.categories]
-            cloneCateg.push(value)
-            setParamsUrl({...paramsUrl, categories : cloneCateg})
-           }else{
-            let cloneCateg  = [...paramsUrl.categories]
+        if(key === 'search') 
+        {
+            setSearchMovie(true)
+            setParamsUrl({...paramsUrl, [`${key}`] :  value}); 
 
-            for (let index = 0; index < cloneCateg.length; index++) {
-                if(cloneCateg[index] == value){
-                    cloneCateg.splice(index,1)
-                }
+        } 
+        else if(key !== 'search')
+        {
+            setSearchMovie(false)
+            if(key === 'startDate' && value > paramsUrl.endDate){
+                alert('La date de début ne peux être supérieure a la date de fin')
+            }else if (key === 'endDate' && value < paramsUrl.startDate){
+                alert('La date de fin ne peux être inférieure a la date de début')
+            }else{
+                // setSearchMovie(false)
+                setParamsUrl({...paramsUrl, [`${key}`] :  value});
             }
+        
+        } 
 
-            setParamsUrl({...paramsUrl, categories : cloneCateg})
-           }
-        }
     };
 
     useEffect(() => {
         getListe()
-    },[paramsUrl.page, paramsUrl.startDate, paramsUrl.endDate, paramsUrl.categories])
+    },[paramsUrl.page, paramsUrl.startDate, paramsUrl.endDate, paramsUrl.categories, paramsUrl.search])
 
     const Load = () => {
         if(tvListe.results) {
             return(
                 <div className="">
                     <div className='d-flex justify-content-around'>
-                        <h2 className="text-center">Séries</h2>
-                        <div>
-                            <div id="filter"  className="d-flex flex-wrap ">
-                                {categories.genres.map((info) => {
-                                            return  (<div className="m-1" key={info.id}>
-                                                        <input type="checkbox" className="btn-check" id={info.id} value={info.id} onChange={handleParams}/>
-                                                        <label className="btn btn-outline-dark" htmlFor={info.id}>{info.name}</label>
-                                                    </div>
-                                                )
-                                })}
-                            </div>
-                        </div>
+                            <Filter 
+                                genres={categories.genres}
+                                formats={formats}
+                                onChange={handleFormat}
+                                changeDate={handleParams}
+                                startValue={paramsUrl.startDate}
+                                endValue={paramsUrl.endDate}
+                                changeSearch={handleParams}
+                                searchValue={paramsUrl.titleMovie}
+                            />
                     </div>
                     <div className="album py-5 bg-light">
                         <Grid display="flex" justifyContent="center" alignItems="center">
@@ -101,7 +118,7 @@ const TVListe = () => {
                                         return <Cards 
                                                     id={info.id}
                                                     img={img_url + info.poster_path}
-                                                    title={info.title} 
+                                                    title={info.name} 
                                                     vote={info.vote_count}
                                                     avie={info.vote_average}
                                                     date={info.release_date}
