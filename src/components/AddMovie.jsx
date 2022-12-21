@@ -19,9 +19,9 @@ const AddMovie = () => {
 
     const {myError, saveError} = useError()
 
-    const config = {
-        headers : { Authorization: `Bearer ${sessionStorage.getItem('token')}`}
-    };
+    // const config = {
+    //     headers : { Authorization: `Bearer ${sessionStorage.getItem('token')}`}
+    // };
 
     const [addMovie, setAddMovie] = useState({
         title:'Ajouter votre titre', 
@@ -74,8 +74,8 @@ const AddMovie = () => {
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Film à ajouter
-                        <h4 className="text-danger">{myError}</h4>
                     </Typography>
+                        <h4 className="text-danger">{myError}</h4>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
                         <DivForm 
                             name='title' 

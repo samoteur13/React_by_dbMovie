@@ -48,7 +48,7 @@ const CardDetailsMovieTV = (props) => {
                             <p className="fs-5 mb-4">{props.overview}</p>
                         </section>
                         <div className="ratio ratio-16x9">
-                            <iframe src={props.trailer}></iframe>
+                            <iframe title={props.title} src={props.trailer}></iframe>
                         </div>
                                     <div className="col-md-12 overflow-hidden text-center">
                                         <div className="d-flex overflow-auto ">

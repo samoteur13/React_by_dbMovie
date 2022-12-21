@@ -35,7 +35,6 @@ const Filter = (props) => {
                               gap: 1,
                               gridTemplateColumns: 'repeat(2, 1fr)',
                             }}
-                            xs={{p : 0}}
                             >
             <Grid container  sx={{
                               md : 12 ,
@@ -75,7 +74,7 @@ const Filter = (props) => {
                 inputProps={{ 'aria-label': 'Recherchez votre filme' }}
               />
               <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-                <SearchIcon actionSearch="" />
+                <SearchIcon  />
               </IconButton>
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
             </Paper>

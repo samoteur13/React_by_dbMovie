@@ -3,7 +3,6 @@ import Cards from '../tools/Card'
 import axios from 'axios';
 import {useState, useEffect , useContext } from 'react';
 import Loading from '../tools/Loading'
-import DivForm from '../tools/DivForm'
 import { MyContext } from '../../store/AppContext';
 import {useGenres} from '../../utils/useGenres'
 import Filter from '../tools/Filter'
@@ -18,6 +17,9 @@ const MovieListe = () => {
     useEffect( () =>{
         setStore({...store, isMovie: 'movie'});
     },[])
+
+    // const [test, setTest] = useContext('coucou');
+
 
     const [paramsUrl, setParamsUrl] = useState({
         //search movie by date
@@ -37,13 +39,12 @@ const MovieListe = () => {
         keySearch : '&query=',
         search: '',
         adult: '&include_adult=false'
-
     })
 
     const categories =  useGenres('movie')
 
     const [searchMovie , setSearchMovie] = useState(false)
-    let urlListMovie = searchMovie == false
+    let urlListMovie = searchMovie === false
                 ? `${ paramsUrl.url}${paramsUrl.keyStartDate}${paramsUrl.startDate}${paramsUrl.keyEndDate}${paramsUrl.endDate}${paramsUrl.token}${paramsUrl.lang}${paramsUrl.keyPage}${paramsUrl.page}&with_genres=${paramsUrl.categories.toString()}`
                 : `${ paramsUrl.urlSearch}${paramsUrl.tokenSearch}${paramsUrl.lang}${paramsUrl.keySearch}${paramsUrl.search}${paramsUrl.keyPage}${paramsUrl.page}${paramsUrl.adult}&with_genres=${paramsUrl.categories.toString()}`  
     const img_url = 'https://image.tmdb.org/t/p/original'
@@ -67,20 +68,40 @@ const MovieListe = () => {
         const key = e.target.name;
         const value = e.target.value;
 
-        if(key == 'startDate' && value > paramsUrl.endDate){
+        if(key === 'startDate' && value > paramsUrl.endDate){
             alert('La date de début ne peux être supérieure a la date de fin')
-        }else if (key == 'endDate' && value < paramsUrl.startDate){
+        }else if (key === 'endDate' && value < paramsUrl.startDate){
             alert('La date de fin ne peux être inférieure a la date de début')
         }else{
             setSearchMovie(false)
             setParamsUrl({...paramsUrl, [`${key}`] :  value});
         }
 
-        if(key == 'search'){
+        if(key === 'search'){
             setSearchMovie(true)
             setParamsUrl({...paramsUrl, [`${key}`] :  value}); 
         }
     };
+
+    function limit_file_caracter (text){
+        if(text != ''){
+            let split = text.split('.');
+            let file_name = split[0];
+            let extension = split[1];
+        
+            if(file_name.length > 5){
+                file_name = file_name.substring(0,5);
+            }
+        
+            let result = file_name + '(...).' + extension;
+        
+            console.log(result, 'result');
+            return(result);
+        }else{
+            return null;
+        }   
+    
+    }
 
     useEffect(() => {
         getListe()

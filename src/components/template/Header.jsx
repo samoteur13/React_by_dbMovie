@@ -36,7 +36,7 @@ const HEADER = () => {
       };
     
       const handleCloseUserMenu = (event) => {
-        setAnchorElUser(null);
+          setAnchorElUser(null);
       };
 
     const {store, setStore} = useContext(MyContext);
@@ -95,16 +95,16 @@ const HEADER = () => {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                                 >
-                                    <MenuItem onClick={handleCloseUserMenu}>
+                                    <MenuItem onClick={handleCloseNavMenu}>
                                     <Typography  onClick={() => {navigate('/')}} textAlign="center">Accueil</Typography>
                                     </MenuItem>
-                                    <MenuItem onClick={handleCloseUserMenu}>
+                                    <MenuItem onClick={handleCloseNavMenu}>
                                     <Typography onClick={() => {navigate('/liste-de-filme')}}  textAlign="center">Film</Typography>
                                     </MenuItem>
-                                    <MenuItem onClick={handleCloseUserMenu}>
+                                    <MenuItem onClick={handleCloseNavMenu}>
                                     <Typography onClick={() => {navigate('/liste-de-serie')}} textAlign="center">Serie</Typography>
                                     </MenuItem>
-                                    <MenuItem onClick={handleCloseUserMenu}>
+                                    <MenuItem onClick={handleCloseNavMenu}>
                                     <Typography onClick={() => {navigate('/ajouter-un-filme')}} textAlign="center">ajouter un filme</Typography>
                                     </MenuItem>
                                 </Menu>
