@@ -8,7 +8,13 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
+
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
 const CardDetailsMovieTV = (props) => {
 
@@ -30,49 +36,39 @@ const CardDetailsMovieTV = (props) => {
                             title="Categories"
                         />
                         <CardContent>
-                            <ul className="list-unstyled mb-0 d-flex justify-content-around">
+                            <Stack direction="row" spacing={1}>
                                 {props.genres.map((genre, index) => {
-                                    return <li key={index}> 
-                                            <button  id={index}  className="badge badge-secondary bg-secondary" type="submit">{genre.name}</button>
-                                    </li>
-                                    
+                                    return <Chip key={index}  id={index} variant="outlined" color="primary"  label={genre.name} />
                                 })}
-                            </ul>
+                            </Stack>
                         </CardContent>
                         
                     </Card>
-                    <div className="card mb-4">
-                        <div className="card-header">Categories</div>
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-sm-12">
-                                    <ul className="list-unstyled mb-0 d-flex justify-content-around">
-                                        {props.genres.map((genre, index) => {
-                                           return <li key={index}> 
-                                                    <button  id={index}  className="badge badge-secondary bg-secondary" type="submit">{genre.name}</button>
-                                                </li>
-                                           
-                                        })}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card mb-4">
-                        <div className="card-header">Avie</div>
-                        <div className="card-body">
-                            <ul className="list-unstyled mb-0">
-                                <li><p>Vote :  {props.avie} </p></li>
-                                <li>Avie : {props.vote}</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <Card>
+                        <CardHeader 
+                            title="Avie" 
+                        />
+                        <CardContent>
+                            <List >
+                                <ListItem>
+                                    <ListItemText
+                                        primary={`Avie : ${props.avie}`}
+                                    />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText
+                                        primary={`Vote : ${props.vote}`}
+                                    />
+                                </ListItem>
+                            </List>
+                        </CardContent>
+                    </Card>
                 </Grid>
                 {/* coté droit */}
                 <Grid md={8}>
                     <Grid >
                         <h1>{props.title}</h1>
-                        <Box sx={{ color: 'text.secondary' }} className="fst-italic mb-2">Film sortie en ....{props.date}</Box>
+                        <Box sx={{ color: 'text.secondary' }} >Film sortie en ....{props.date}</Box>
                     </Grid>
                     <Grid >
                         <p style={{fontSize: '1.4rem', marginBottom : '20px'}}>{props.overview}</p>
@@ -88,7 +84,7 @@ const CardDetailsMovieTV = (props) => {
                                         
                                                     {info.logo_path != null ? <img  src={props.imgCompagnie +  info.logo_path}   alt={info.name + 'image'} /> :
                                                         <ImgNoFound />}
-                                                    <p className="">{info.name}</p>
+                                                    <p>{info.name}</p>
                                                 </Grid>
                                 })}
                             </div>
