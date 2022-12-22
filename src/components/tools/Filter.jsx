@@ -28,7 +28,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 
 const Filter = (props) => {
     return(
-        <Grid container>
+        <Grid container sx={{mb: '2rem'}}>
           <Grid container  sx={{
                               p : 1 ,
                               display: 'grid',

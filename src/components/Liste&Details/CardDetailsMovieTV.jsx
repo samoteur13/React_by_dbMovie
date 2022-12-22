@@ -31,12 +31,13 @@ const CardDetailsMovieTV = (props) => {
                         />
 
                     </Card>
-                    <Card>
+                    <Card sx={{mt: '2rem'}}>
                         <CardHeader
+                            sx={{bgcolor : '#bdbdbd'}}
                             title="Categories"
                         />
                         <CardContent>
-                            <Stack direction="row" spacing={1}>
+                            <Stack direction="row" spacing={1}  >
                                 {props.genres.map((genre, index) => {
                                     return <Chip key={index}  id={index} variant="outlined" color="primary"  label={genre.name} />
                                 })}
@@ -44,8 +45,9 @@ const CardDetailsMovieTV = (props) => {
                         </CardContent>
                         
                     </Card>
-                    <Card>
+                    <Card sx={{mt: '2rem'}}>
                         <CardHeader 
+                            sx={{bgcolor : '#bdbdbd'}}
                             title="Avie" 
                         />
                         <CardContent>
@@ -74,9 +76,9 @@ const CardDetailsMovieTV = (props) => {
                         <p style={{fontSize: '1.4rem', marginBottom : '20px'}}>{props.overview}</p>
                     </Grid>
                     <div className="video_wrapper">
-                        <iframe title={props.title} src={props.trailer}></iframe>
+                        <iframe style={{borderRadius : '8px'}} title={props.title} src={props.trailer}></iframe>
                     </div>
-                        <Grid md={12} style={{overflow: 'hidden'}} >
+                        <Grid md={12} style={{overflow: 'hidden'}} sx={{mt: '2rem'}}>
                             <div style={{display:'flex', overflow: 'auto'}} >
                                 {props.compagnies.map((info, index) => {
                                     return   <Grid spacing={1} key={index} xs={3} 
