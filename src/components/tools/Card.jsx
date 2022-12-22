@@ -27,9 +27,10 @@ const Cards = (props) => {
                     alt={props.img}
                 />
                 <CardHeader
+                    sx={{ padding: { xs: '0,2', md:'1' } }}
                     title={props.title}
                     subheader={props.date}
-                    style={{fontsize : '1.3rem'}}
+                    style={{fontsize : '1.2rem'}}
                 />
                     {/* <CardContent>
                     <Typography variant="body2" color="text.secondary">

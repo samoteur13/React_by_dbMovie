@@ -13,13 +13,11 @@ import Container from '@mui/material/Container';
 
 const MovieListe = () => { 
 
+
     const {store, setStore} = useContext(MyContext);
     useEffect( () =>{
         setStore({...store, isMovie: 'movie'});
     },[])
-
-    // const [test, setTest] = useContext('coucou');
-
 
     const [paramsUrl, setParamsUrl] = useState({
         //search movie by date
@@ -107,6 +105,15 @@ const MovieListe = () => {
         getListe()
     },[paramsUrl.page, paramsUrl.startDate, paramsUrl.endDate,paramsUrl.search, paramsUrl.categories])
 
+    const lenTitle = (title) => {
+        if(title.length > 42 ) {
+            return title.slice(0,38) + '..'
+        }else {
+            return title
+        }
+    }
+
+
     const Load = () => {
         if(movieList.results) {
             return(
@@ -137,7 +144,7 @@ const MovieListe = () => {
                                         return <Cards 
                                                     id={info.id}
                                                     img={img_url + info.poster_path}
-                                                    title={info.title} 
+                                                    title={lenTitle(info.title)} 
                                                     vote={info.vote_count}
                                                     avie={info.vote_average}
                                                     date={info.release_date}

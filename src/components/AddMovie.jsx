@@ -24,9 +24,9 @@ const AddMovie = () => {
     // };
 
     const [addMovie, setAddMovie] = useState({
-        title:'Ajouter votre titre', 
-        overview : 'Une description de votre film', 
-        release_date: 'Date de realisation', 
+        title:'Ajoutez votre titre', 
+        overview : 'Ajoutez une description', 
+        release_date: 'Ajoutez  la Date de realisation', 
         poster_path: 'https://i0.wp.com/views.fr/wp-content/uploads/2020/04/8t7cemgym6dx0fa71yj6uo0rno-475.jpg?resize=1200%2C1800&ssl=1'
     })
 

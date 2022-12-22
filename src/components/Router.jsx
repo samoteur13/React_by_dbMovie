@@ -7,7 +7,7 @@ import Header from './template/Header'
 import Footer from './template/Footer'
 import MovieListe from './Liste&Details/MovieListe';
 import MoovieDetails from './Liste&Details/Moovie_tv_Details';
-import SeriesTv from './Liste&Details/SeriesTv'
+import TvListe from './Liste&Details/TvListe'
 import RegistrationLogin from './login/RegistrationLogin';
 import Profil from './Profil'
 import AddMovie from './AddMovie'
@@ -48,7 +48,7 @@ const Router = React.FC = () =>{
                     <Route element={<AuthRoutes/>}>
                         <Route path={MyRoutes.LISTE_MOVIE} element={<MovieListe/>} />
                         <Route path={MyRoutes.MOVIE_DETAILS} element={<MoovieDetails />} />
-                        <Route path={MyRoutes.LISTE_TV} element={<SeriesTv/>} />
+                        <Route path={MyRoutes.LISTE_TV} element={<TvListe/>} />
                         <Route path={MyRoutes.ADDMOVIE} element={<AddMovie />} />
                         <Route path={MyRoutes.PROFIL} element={<Profil />} />
                     </Route>
