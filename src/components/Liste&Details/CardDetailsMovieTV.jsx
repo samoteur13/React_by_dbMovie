@@ -1,5 +1,4 @@
 import React from 'react';
-import ImgNoFound from '../tools/ImgNoFound'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box'
@@ -15,6 +14,8 @@ import Stack from '@mui/material/Stack';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+
+import Paper from '@mui/material/Paper';
 
 const CardDetailsMovieTV = (props) => {
 
@@ -78,10 +79,11 @@ const CardDetailsMovieTV = (props) => {
                     <div className="video_wrapper">
                         <iframe style={{borderRadius : '8px'}} title={props.title} src={props.trailer}></iframe>
                     </div>
-                        <Box  sx={{mt : '2rem', display : 'flex'}}   className="scrollbar">
+                        <Grid  sx={{mt : '2rem', display : 'flex', flexWrap : 'wrap'}}   className="scrollbar style-scrollbar">
+                            <Box sx={{display : 'inline-flex'}}>
                                 {props.compagnies.map((info, index) => {
                                     return   <Card key={index} 
-                                                    sx={{width : '15rem'}}
+                                                    sx={{width : '10rem'}}
                                                     style={{margin : '1px' ,display:'flex', flexDirection:'column', justifyContent: 'center' , border: '1px solid', borderRadius: '8px' }} className="App">
                                                         <CardMedia
                                                             component="img"
@@ -93,7 +95,8 @@ const CardDetailsMovieTV = (props) => {
                                                     </CardContent>
                                                 </Card>
                                 })}
-                        </Box>
+                            </Box>
+                        </Grid>
                 </Grid>
             </Grid>
         </Container>
