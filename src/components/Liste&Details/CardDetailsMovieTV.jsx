@@ -78,19 +78,22 @@ const CardDetailsMovieTV = (props) => {
                     <div className="video_wrapper">
                         <iframe style={{borderRadius : '8px'}} title={props.title} src={props.trailer}></iframe>
                     </div>
-                        <Grid md={12} style={{overflow: 'hidden'}} sx={{mt: '2rem'}}>
-                            <div style={{display:'flex', overflow: 'auto'}} >
+                        <Box  sx={{mt : '2rem', display : 'flex'}}   className="scrollbar">
                                 {props.compagnies.map((info, index) => {
-                                    return   <Grid spacing={1} key={index} xs={3} 
-                                                    style={{margin : '1px' ,display:'flex', flexDirection:'column', justifyContent: 'space-between' , border: '1px solid', borderRadius: '8px' }} className="App">
-                                        
-                                                    {info.logo_path != null ? <img  src={props.imgCompagnie +  info.logo_path}   alt={info.name + 'image'} /> :
-                                                        <ImgNoFound />}
-                                                    <p>{info.name}</p>
-                                                </Grid>
+                                    return   <Card key={index} 
+                                                    sx={{width : '15rem'}}
+                                                    style={{margin : '1px' ,display:'flex', flexDirection:'column', justifyContent: 'center' , border: '1px solid', borderRadius: '8px' }} className="App">
+                                                        <CardMedia
+                                                            component="img"
+                                                            image={info.logo_path != null ? props.imgCompagnie +  info.logo_path: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Pas_d%27image_disponible.svg/300px-Pas_d%27image_disponible.svg.png'}
+                                                            alt={info.name + 'image'}
+                                                        />
+                                                    <CardContent >
+                                                        <p>{info.name}</p>
+                                                    </CardContent>
+                                                </Card>
                                 })}
-                            </div>
-                        </Grid>
+                        </Box>
                 </Grid>
             </Grid>
         </Container>

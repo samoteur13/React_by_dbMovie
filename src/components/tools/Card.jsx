@@ -18,7 +18,7 @@ const Cards = (props) => {
     let url = '/detail-du-filme/'+ props.id
     
     return (
-        <Grid xs={6} sm={4} md={3} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
+        <Grid xs={6} sm={4} md={3} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 5 }} >
             <Card>
                 <CardMedia
                     component="img"
@@ -30,7 +30,7 @@ const Cards = (props) => {
                     sx={{ padding: { xs: '0,2', md:'1' } }}
                     title={props.title}
                     subheader={props.date}
-                    style={{fontsize : '1.2rem'}}
+                    style={{fontsize : '1.2rem' , height : '5rem'}}
                 />
                     {/* <CardContent>
                     <Typography variant="body2" color="text.secondary">
