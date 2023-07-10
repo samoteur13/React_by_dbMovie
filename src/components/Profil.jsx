@@ -58,7 +58,7 @@ const Profil = () => {
                 component="form" 
                 onSubmit={handleSubmit} 
                 >
-                <h3>Mon profile</h3>
+                <h3>Mon profil</h3>
                 <DivForm 
                     name='email' 
                     label='Email' 

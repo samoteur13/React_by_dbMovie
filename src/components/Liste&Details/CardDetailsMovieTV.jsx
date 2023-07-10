@@ -15,7 +15,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
-import Paper from '@mui/material/Paper';
 
 const CardDetailsMovieTV = (props) => {
 
@@ -35,7 +34,7 @@ const CardDetailsMovieTV = (props) => {
                     <Card sx={{mt: '2rem'}}>
                         <CardHeader
                             sx={{bgcolor : '#bdbdbd'}}
-                            title="Categories"
+                            title="Catégories"
                         />
                         <CardContent>
                             <Stack direction="row" spacing={1}  >
@@ -49,7 +48,7 @@ const CardDetailsMovieTV = (props) => {
                     <Card sx={{mt: '2rem'}}>
                         <CardHeader 
                             sx={{bgcolor : '#bdbdbd'}}
-                            title="Avie" 
+                            title="Avis" 
                         />
                         <CardContent>
                             <List >
@@ -79,7 +78,7 @@ const CardDetailsMovieTV = (props) => {
                     <div className="video_wrapper">
                         <iframe style={{borderRadius : '8px'}} title={props.title} src={props.trailer}></iframe>
                     </div>
-                        <Grid  sx={{mt : '2rem', display : 'flex', flexWrap : 'wrap'}}   className="scrollbar style-scrollbar">
+                        <Grid  sx={{mt : '2rem', display : 'flex', flexWrap : 'wrap', pallete: 'dark'}}   className="scrollbar style-scrollbar">
                             <Box sx={{display : 'inline-flex'}}>
                                 {props.compagnies.map((info, index) => {
                                     return   <Card key={index} 

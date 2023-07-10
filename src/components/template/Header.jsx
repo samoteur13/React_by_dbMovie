@@ -98,13 +98,13 @@ const HEADER = () => {
                                     <Typography  onClick={() => {navigate('/')}} textAlign="center">Accueil</Typography>
                                     </MenuItem>
                                     <MenuItem onClick={handleCloseNavMenu}>
-                                    <Typography onClick={() => {navigate('/liste-de-filme')}}  textAlign="center">Film</Typography>
+                                    <Typography onClick={() => {navigate('/liste-de-filme')}}  textAlign="center">Films</Typography>
                                     </MenuItem>
                                     <MenuItem onClick={handleCloseNavMenu}>
-                                    <Typography onClick={() => {navigate('/liste-de-serie')}} textAlign="center">Serie</Typography>
+                                    <Typography onClick={() => {navigate('/liste-de-serie')}} textAlign="center">Séries</Typography>
                                     </MenuItem>
                                     <MenuItem onClick={handleCloseNavMenu}>
-                                    <Typography onClick={() => {navigate('/ajouter-un-filme')}} textAlign="center">ajouter un filme</Typography>
+                                    <Typography onClick={() => {navigate('/ajouter-un-filme')}} textAlign="center">Ajouter un film</Typography>
                                     </MenuItem>
                                 </Menu>
                             </Box>
@@ -140,19 +140,19 @@ const HEADER = () => {
                                     onClick={() => {navigate('/liste-de-filme',)}}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
-                                    film
+                                    Films
                                 </Button>                            
                                 <Button
                                     onClick={() => {navigate('/liste-de-serie')}}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
-                                    serie
+                                    séries
                                 </Button>
                                 <Button
                                     onClick={() => {navigate('/ajouter-un-filme')}}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
-                                    ajouter un filme
+                                    Ajouter un film
                                 </Button>
                             </Box>
                             <Box sx={{ flexGrow: 0 }}>

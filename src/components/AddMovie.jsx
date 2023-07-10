@@ -99,7 +99,7 @@ const AddMovie = () => {
                         />
                         <DivForm 
                             name='poster_path' 
-                            label="Adress de l'image" 
+                            label="URL de l'image" 
                             type='text' 
                             val={addMovie.poster_path} 
                             onChange={handleUser}
