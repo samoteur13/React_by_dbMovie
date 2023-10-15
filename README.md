@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Liste de Films (Movie List)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react)
+![Material-UI](https://img.shields.io/badge/Material--UI-5.10.15-green?style=for-the-badge&logo=material-ui)
+![Axios](https://img.shields.io/badge/Axios-1.1.3-red?style=for-the-badge)
+![React Router Dom](https://img.shields.io/badge/React%20Router%20Dom-6.4.2-purple?style=for-the-badge)
 
-## Available Scripts
 
-In the project directory, you can run:
+## About
 
-### `npm start`
+The "Liste de Films" project is a React-based web application for managing a list of movies. I developed this project during my training, particularly during my internship. This project represents my first experience with React. It utilizes the ["dbMovie" API](https://developer.themoviedb.org/reference/intro/getting-started) to fetch movie data and create an interactive movie list.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Material-UI** was used for the user interface, providing a modern and user-friendly design.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+I've also implemented a search filter, allowing users to search for movies by year, genre, or directly by movie title.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Screenshot of the Site RI7 Movie](./RI7MovieCapture.png)
+[![View Demo](https://img.shields.io/badge/View%20Demo-Live%20Demo-blue?style=for-the-badge)](https://whimsical-alfajores-0a8e7f.netlify.app/)
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React**: The core framework used for building the application.
+- **Material-UI**: A popular React UI framework for a modern user interface.
+- **Axios**: A promise-based HTTP client for making API requests.
+- **React Router Dom**: A routing library for managing different pages and views.
+- **Emotion**: Styling libraries to enhance the look and feel of the application.
+- **Testing Library**: Utilities for unit and integration testing.
+- **Web Vitals**: Tools for monitoring the web application's performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To set up this project on your local machine, follow these steps:
 
-### `npm run eject`
+1. Clone this repository to your computer.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Install the project's dependencies using the following command:
+   ```bash
+   npm install
+   
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Start the Development Server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To begin the development server, use the following commands:
+   ```bash
+   npm start
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Access the application in your web browser via http://localhost:3000.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

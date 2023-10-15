@@ -1,3 +1,0 @@
--Modifier la taille des titres
--modifier la fiche de détaille filme et série
--modifier l'acceuille
